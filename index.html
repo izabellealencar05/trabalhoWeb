@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Controle de Ponto</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="data-hora">
+        <p id="dia-semana">Segunda-feira</p>
+        <p id="dia-mes-ano">26/08/2024</p>
+        <p id="hora-min-seg">08:01:35</p>
+        <button id="btn-bater-ponto">Bater ponto!</button>
+    </div>
+   
+    <dialog id="dialog-ponto">
+        <p id="dialog-data"></p>
+        <p id="dialog-hora"></p>
+        <input type="date" id="input-data" />
+        <select name="tipos-ponto" id="tipos-ponto">
+            <option value="Entrada">Entrada</option>
+            <option value="Intervalo">Intervalo</option>
+            <option value="Volta-intervalo">Volta Intervalo</option>
+            <option value="Saida">Saída</option>
+        </select>
+        <button id="btn-dialog-bater-ponto">Registrar Ponto</button>
+        <button id="btn-dialog-fechar">X</button>
+
+    <div id="notification">
+        <p id="notification-content"></p>
+    </div>
+    
+    <script src="js/index.js"></script>
+</body>
+</html>
