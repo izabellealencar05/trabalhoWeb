@@ -1,0 +1,88 @@
+/* Centralizando o body para que ocupe 100% da altura */
+body {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    height: 100vh; /* Ocupa toda a altura da tela */
+    margin: 0; /* Remove margens padrão */
+    background-image: url(../imagens/imagem2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.2em;
+}
+
+/* Estilização do container centralizado (modal) */
+.container {
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo semitransparente */
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo do título */
+h2 {
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+/* Estilização do bloco de data e hora */
+.data-hora {
+    background-color: rgba(255, 255, 255, 0.1); /* Fundo semitransparente */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* Estilização dos botões */
+.botoes {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Estilo dos botões */
+button {
+    background-color: rgba(0, 123, 255, 0.8);
+    color: white;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 400;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Efeito de hover nos botões */
+button:hover {
+    background-color: rgba(0, 123, 255, 1);
+}
+
+/* Estilo das notificações */
+#notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.3s, transform 0.3s;
+    color: white;
+}
+
+/* Classe para mostrar as notificações */
+#notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
