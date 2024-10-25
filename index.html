@@ -11,6 +11,7 @@
 </head>
 <body>
     <div class="data-hora">
+        <h2 id="titulo">Sistema de Controle de Ponto</h2>
         <p id="dia-semana">Segunda-feira</p>
         <p id="dia-mes-ano">26/08/2024</p>
         <p id="hora-min-seg">08:01:35</p>
@@ -18,9 +19,10 @@
     </div>
    
     <dialog id="dialog-ponto">
+        <!-- TO-DO: -->
+        <!-- Quais outras informações -->
         <p id="dialog-data"></p>
         <p id="dialog-hora"></p>
-        <input type="date" id="input-data" />
         <select name="tipos-ponto" id="tipos-ponto">
             <option value="Entrada">Entrada</option>
             <option value="Intervalo">Intervalo</option>
@@ -29,11 +31,14 @@
         </select>
         <button id="btn-dialog-bater-ponto">Registrar Ponto</button>
         <button id="btn-dialog-fechar">X</button>
-
+    </dialog>
     <div id="notification">
         <p id="notification-content"></p>
     </div>
     
+    <!-- TO-DO: -->
+    <!-- criar histórico dos ultimos n registros -->
+    <!-- criar footer para alerta -->
     <script src="js/index.js"></script>
 </body>
 </html>
