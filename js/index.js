@@ -1,3 +1,4 @@
+// Declaração de funções
 function getWeekDay() {
     const date = new Date();
     let days = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
@@ -69,6 +70,7 @@ function printCurrentHour() {
     horaMinSeg.textContent = getCurrentTime();
 }
 
+// Referências de elementos DOM
 const diaSemana = document.getElementById("dia-semana");
 const diaMesAno = document.getElementById("dia-mes-ano"); 
 const horaMinSeg = document.getElementById("hora-min-seg");
@@ -88,9 +90,9 @@ let dialogInterval;
 let registerLocalStorage = getRegisterLocalStorage();
 
 btnBaterPonto.addEventListener("click", function() {
-    dialogPonto.showModal();
-
+    window.location.href = "baterPonto.html"; 
 });
+
 
 btnDialogFechar.addEventListener("click", () => {
     dialogPonto.close();
@@ -131,7 +133,12 @@ btnDialogBaterPonto.addEventListener("click", () => {
 
 });
 
+// TO-DO:
+// A data e hora do dialog devem ser atualizadas automaticamente
+// a hora a cada segundo e a data sempre 00:00:00
+// o setInterval do dialog em que ser desativadoao fechar o dialog
 
+// Configuração incial
 dialogData.textContent = "Data: " + getCurrentDate();
 dialogHora.textContent = "Hora: " + getCurrentTime();
 
@@ -139,6 +146,7 @@ diaSemana.textContent = getWeekDay();
 diaMesAno.textContent = getCurrentDate();
 horaMinSeg.textContent = getCurrentTime();
 
+// Inicia o intervalo para atualiza a hoa a cada segundo 
 setInterval(() => {
     printCurrentHour();
     
@@ -147,65 +155,3 @@ setInterval(() => {
         dialogHora.textContent = "Hora: " + getCurrentTime();
     }
 }, 1000);
-const inputData = document.getElementById("input-data");
-inputData.max = getCurrentDate(); 
-
-btnDialogBaterPonto.addEventListener("click", () => {
-    let typeRegister = document.getElementById("tipos-ponto").value;
-    let selectedDate = inputData.value || getCurrentDate(); 
-
-    if (new Date(selectedDate) > new Date()) {
-        alert("Não é permitido registrar pontos em datas futuras.");
-        return;
-    }
-
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-            let info = {
-                data: selectedDate, 
-                hora: getCurrentTime(),
-                id: 1,
-                tipo: typeRegister,
-                localizacao: {
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude
-                }
-            };
-
-            console.log(info); 
-
-            saveRegisterLocalStorage(info);
-
-            localStorage.setItem("lastTypeRegister", typeRegister);
-            
-            let message = `Ponto batido com sucesso às ${info.hora} no dia ${info.data} no momento ${info.tipo}`;
-            showNotification(message);
-
-            dialogPonto.close();
-        });
-    } else {
-        console.log("Geolocalização não é suportada por este navegador.");
-    }
-});
-
-function exibirRegistros() {
-    const registros = getRegisterLocalStorage();
-    const registrosContainer = document.getElementById("registros");
-    registrosContainer.innerHTML = ''; 
-
-    registros.forEach((registro) => {
-        const divRegistro = document.createElement("div");
-        divRegistro.className = registro.data === getCurrentDate() ? "registro-atual" : "registro-passado"; 
-
-        divRegistro.innerHTML = `
-            <p>Data: ${registro.data}</p>
-            <p>Hora: ${registro.hora}</p>
-            <p>Tipo: ${registro.tipo}</p>
-            <p>Localização: ${registro.localizacao.latitude}, ${registro.localizacao.longitude}</p>
-        `;
-        
-        registrosContainer.appendChild(divRegistro);
-    });
-}
-
-document.addEventListener("DOMContentLoaded", exibirRegistros);
