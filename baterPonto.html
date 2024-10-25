@@ -5,28 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/baterPonto.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
     <title>Bater Ponto</title>
 </head>
 <body>
-    <h2>Registrar Ponto</h2>
-    <div class="">
-        <p id="dia-semana">Segunda-feira</p>
-        <p id="'dia-mes-ano">26/08/2024</p>
-        <p id="hora-min-seg">08:01:35</p>
+    <div class="container">
+        <h2>Registrar Ponto</h2>
+        <div class="data-hora">
+            <p id="dia-semana"></p>
+            <p id="dia-mes-ano"></p>
+            <p id="hora-min-seg"></p>
+        </div>
+
+        <div class="botoes">
+            <button id="entrada">Entrada</button>
+            <button id="saida">Saída</button>
+            <button id="intervalo">Intervalo</button>
+            <button id="volta-intervalo">Volta do Intervalo</button>
+        </div>
     </div>
 
-    <div>
-        <button id="entrada">Entrada</button>
-        <button id="saida">Saída</button>
-        <button id="intervalo">Intervalo</button>
-        <button id="volta-intervalo">Volta do Intervalo</button>
-    </div>
-
-    <div id="notification"></div>
+    <div id="notification">
         <p id="notification-content"></p>
     </div>
 
     <script src="js/index.js"></script>
+    <script>
+        // Função para atualizar data e hora
+        function atualizarDataHora() {
+            const diasSemana = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
+            const mesesAno = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+
+            const agora = new Date();
+
+            // Formata dia da semana
+            const diaSemana = diasSemana[agora.getDay()];
+            document.getElementById("dia-semana").textContent = diaSemana;
+
+            // Formata data
+            const dia = agora.getDate();
+            const mes = mesesAno[agora.getMonth()];
+            const ano = agora.getFullYear();
+            document.getElementById("dia-mes-ano").textContent = `${dia} de ${mes} de ${ano}`;
+
+            // Formata hora
+            const horas = String(agora.getHours()).padStart(2, "0");
+            const minutos = String(agora.getMinutes()).padStart(2, "0");
+            const segundos = String(agora.getSeconds()).padStart(2, "0");
+            document.getElementById("hora-min-seg").textContent = `${horas}:${minutos}:${segundos}`;
+        }
+
+        // Atualiza a cada segundo
+        setInterval(atualizarDataHora, 1000);
+    </script>
 </body>
 </html>
